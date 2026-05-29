@@ -33,7 +33,7 @@ const FloatCard = ({ icon, label, gradient, className = '', animDelay = '0s' }: 
         {icon}
       </div>
       {/* Label */}
-      <span className="text-[10px] font-bold text-gray-600 tracking-wide whitespace-nowrap">{label}</span>
+      <span className="type-button whitespace-nowrap text-[10px] text-gray-600">{label}</span>
     </div>
   </div>
 );
@@ -75,16 +75,16 @@ const Badge247 = ({ className = '', animDelay = '0s' }: { className?: string; an
             <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
           </span>
-          <span className="text-[8px] font-black text-emerald-600 uppercase tracking-[0.16em]">Live</span>
+          <span className="type-eyebrow text-[8px] text-emerald-600">Live</span>
         </div>
       </div>
 
       <div className="flex items-end gap-1">
-        <span className="text-[31px] font-black text-gray-900 leading-none tracking-tight">24/7</span>
-        <span className="mb-1 text-[8px] font-black text-orange-500 uppercase tracking-[0.18em]">Desk</span>
+        <span className="type-display text-[31px] text-gray-900">24/7</span>
+        <span className="type-eyebrow mb-1 text-[8px] text-orange-500">Desk</span>
       </div>
       <div className="mt-1.5 h-px w-full bg-gradient-to-r from-orange-400/60 via-amber-300/60 to-transparent" />
-      <p className="mt-1.5 text-[9px] font-bold text-gray-500 leading-tight">Rapid response, always online</p>
+      <p className="type-card-body mt-1.5 text-[9px] text-gray-500">Rapid response, always online</p>
     </div>
   </div>
 );
@@ -151,20 +151,19 @@ const Hero = () => {
         <div className="flex items-center">
 
           {/* Left: headline + CTA ──────────────────────────── */}
-          <div className="flex-none w-full sm:w-[56%] lg:w-[48%] pt-12 pb-8 lg:pt-16 lg:pb-10">
+          <div className="flex-none w-full sm:w-[56%] lg:w-[48%] pt-10 pb-8 text-left lg:pt-16 lg:pb-10">
 
             {/* Eyebrow label */}
             <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm border border-white/70 rounded-full px-4 py-2 mb-5">
               <span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
-              <span className="font-['Manrope'] text-[11px] font-extrabold text-gray-700 uppercase tracking-[0.18em]">
+              <span className="type-eyebrow text-[10px] text-gray-700 sm:text-[11px]">
                 Trusted by 5,000+ Businesses Worldwide
               </span>
             </div>
 
             {/* Headline */}
             <h1
-              className="max-w-[640px] text-[44px] sm:text-[52px] lg:text-[62px] xl:text-[68px] font-semibold text-gray-950 leading-[1.05] tracking-[-0.03em]"
-              style={{ fontFamily: '"Lucida Sans", "Lucida Grande", "Trebuchet MS", Arial, sans-serif' }}
+              className="type-display max-w-[640px] text-[38px] text-gray-950 sm:text-[52px] lg:text-[62px] xl:text-[68px]"
             >
               Expert IT Support<br />
               <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
@@ -173,7 +172,7 @@ const Hero = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-5 text-[15px] sm:text-[16px] text-gray-700/85 leading-relaxed max-w-[430px]">
+            <p className="type-body mt-5 max-w-[430px] text-[15px] text-gray-700/85 sm:text-[16px]">
               Managed cloud, server &amp; helpdesk solutions — proactive, secure, and available around the clock.
             </p>
 
@@ -181,7 +180,7 @@ const Hero = () => {
             <div className="w-10 h-[5px] bg-orange-500 rounded-full mt-5 mb-7" />
 
             {/* CTA row */}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-start gap-4">
               <a
                 href="/request-for-quote"
                 className="inline-flex items-center h-12 bg-orange-500 rounded-full pl-1.5 pr-6 gap-3 hover:bg-orange-600 transition-colors shadow-lg shadow-orange-300/40 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
@@ -190,7 +189,7 @@ const Hero = () => {
                 <span className="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
                   <ArrowRight size={16} className="text-orange-500" strokeWidth={2.8} />
                 </span>
-                <span className="text-white font-semibold text-[14px]">Request for Quote</span>
+                <span className="type-button text-[14px] text-white">Request for Quote</span>
               </a>
             </div>
           </div>
@@ -242,32 +241,32 @@ const Hero = () => {
       </div>
 
       {/* ── Soft wave transition into trust section ── */}
-      <div className="relative -mt-3 -mb-px" aria-hidden="true">
-        <svg viewBox="0 0 1440 96" className="block w-full" fill="none" preserveAspectRatio="none" style={{ height: '96px' }}>
+      <div className="relative -mt-3 -mb-8" aria-hidden="true">
+        <svg viewBox="0 0 1440 124" className="block w-full" fill="none" preserveAspectRatio="none" style={{ height: '124px' }}>
           <path
-            d="M0 96V25C150 45 315 58 500 46C704 33 842 14 1042 25C1202 34 1325 47 1440 31V96H0Z"
+            d="M0 124V30C150 53 315 68 500 54C704 39 842 18 1042 31C1202 41 1325 55 1440 37V124H0Z"
             fill="#FFFAF5"
           />
           <path
-            d="M0 28C150 48 315 61 500 49C704 36 842 17 1042 28C1202 37 1325 50 1440 34"
+            d="M0 33C150 56 315 71 500 57C704 42 842 21 1042 34C1202 44 1325 58 1440 40"
             stroke="rgba(255,255,255,0.82)"
             strokeWidth="9"
             strokeLinecap="round"
           />
           <path
-            d="M0 26C150 46 315 59 500 47C704 34 842 15 1042 26C1202 35 1325 48 1440 32"
+            d="M0 31C150 54 315 69 500 55C704 40 842 19 1042 32C1202 42 1325 56 1440 38"
             stroke="rgba(249,115,22,0.20)"
             strokeWidth="1.25"
             strokeLinecap="round"
           />
           <path
-            d="M0 41C180 55 336 65 535 54C722 44 878 28 1054 39C1228 50 1348 58 1440 45"
+            d="M0 51C180 67 336 79 535 66C722 54 878 36 1054 49C1228 62 1348 72 1440 56"
             stroke="rgba(249,115,22,0.10)"
             strokeWidth="1"
             strokeLinecap="round"
           />
           <path
-            d="M0 53C200 64 372 70 578 61C774 52 908 41 1098 52C1258 62 1368 66 1440 58"
+            d="M0 65C200 78 372 85 578 74C774 63 908 51 1098 64C1258 75 1368 80 1440 70"
             stroke="rgba(251,146,60,0.07)"
             strokeWidth="1"
             strokeLinecap="round"

@@ -108,14 +108,14 @@ const Header = () => {
       }`}
     >
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-6 h-[76px] lg:h-[84px]">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 h-[76px] lg:h-[84px] lg:gap-6">
 
           {/* ── Logo ─────────────────────────────── */}
-          <a href="/" aria-label="SupportPRO home" className="flex items-center justify-start w-[150px] lg:w-[170px] -translate-x-4 lg:-translate-x-8">
+          <a href="/" aria-label="SupportPRO home" className="flex w-[130px] items-center justify-start sm:w-[150px] lg:w-[170px] lg:-translate-x-8">
             <img
               src="/logo-header.png"
               alt="SupportPRO Transparent Technical Support"
-              className="h-16 lg:h-[70px] w-auto object-contain"
+              className="h-14 w-auto object-contain sm:h-16 lg:h-[70px]"
               draggable={false}
             />
           </a>
@@ -130,7 +130,7 @@ const Header = () => {
                 onMouseLeave={handleLeave}
               >
                 <button
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg min-h-[42px] transition-colors text-[12px] xl:text-[13px] font-medium whitespace-nowrap ${
+                  className={`type-nav flex items-center gap-1.5 px-3 py-2 rounded-lg min-h-[42px] transition-colors text-[12px] xl:text-[13px] whitespace-nowrap ${
                     openDesktop === item.label ? 'text-orange-400' : 'text-white hover:text-orange-400'
                   }`}
                   aria-expanded={openDesktop === item.label}
@@ -158,7 +158,7 @@ const Header = () => {
                         key={link.label}
                         href={link.href}
                         role="menuitem"
-                        className="block px-4 py-2.5 text-[13px] text-gray-400 hover:bg-white/5 hover:text-orange-400 transition-colors"
+                        className="type-card-body block px-4 py-2.5 text-[13px] text-gray-400 hover:bg-white/5 hover:text-orange-400 transition-colors"
                       >
                         {link.label}
                       </a>
@@ -174,14 +174,14 @@ const Header = () => {
             {/* Emergency outlined pill */}
             <a
               href="/emergency-support"
-              className="group relative flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/70 bg-orange-500/[0.06] text-orange-300 text-[12px] font-bold hover:bg-orange-500/15 hover:border-orange-300 hover:text-orange-200 transition-all duration-200 whitespace-nowrap min-h-[38px] shadow-sm shadow-orange-950/20"
+              className="type-button group relative flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/70 bg-orange-500/[0.06] text-orange-300 text-[12px] hover:bg-orange-500/15 hover:border-orange-300 hover:text-orange-200 transition-all duration-200 whitespace-nowrap min-h-[38px] shadow-sm shadow-orange-950/20"
               aria-label="Emergency Support"
             >
               <span className="w-5 h-5 rounded-full bg-orange-500/15 flex items-center justify-center">
                 <Siren size={12} strokeWidth={2.4} />
               </span>
               Emergency
-              <span className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+              <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
                 Urgent server or cloud issue
               </span>
             </a>
@@ -198,7 +198,7 @@ const Header = () => {
                     className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 hover:text-orange-300 hover:bg-orange-500/10 hover:border-orange-400/30 transition-all duration-200">
                     {icon}
                   </a>
-                  <span className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+                  <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
                     {label}
                   </span>
                 </div>
@@ -208,7 +208,7 @@ const Header = () => {
                     className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 hover:text-orange-300 hover:bg-orange-500/10 hover:border-orange-400/30 transition-all duration-200">
                     {icon}
                   </button>
-                  <span className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+                  <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
                     {label}
                   </span>
                 </div>
@@ -219,11 +219,11 @@ const Header = () => {
             <a
               href="/request-for-quote"
               aria-label="Request a quote"
-              className="group relative flex items-center gap-2 h-10 px-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-[12px] font-bold transition-all duration-200 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/45 flex-shrink-0"
+              className="type-button group relative flex items-center gap-2 h-10 px-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-[12px] transition-all duration-200 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/45 flex-shrink-0"
             >
               <FileText size={15} className="text-white" strokeWidth={2.4} />
               <span>Quote</span>
-              <span className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+              <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
                 Request for Quote
               </span>
             </a>
@@ -247,18 +247,18 @@ const Header = () => {
           <div className="px-5 py-5">
             <div className="flex gap-2 mb-5">
               <a href="/emergency-support" onClick={() => setMobileOpen(false)}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-orange-500/70 text-orange-400 text-sm font-bold">
+                className="type-button flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-orange-500/70 text-orange-400 text-sm">
                 <Siren size={15} /> Emergency
               </a>
               <a href="/request-for-quote" onClick={() => setMobileOpen(false)}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-orange-500 text-white text-sm font-bold">
+                className="type-button flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-orange-500 text-white text-sm">
                 <ArrowRight size={15} /> Get a Quote
               </a>
             </div>
             {NAV_ITEMS.map((item) => (
               <div key={item.label} className="border-b border-white/10">
                 <button
-                  className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-200"
+                  className="type-nav w-full flex items-center justify-between py-4 text-sm text-gray-200"
                   onClick={() => setOpenMobile(p => p === item.label ? null : item.label)}
                   aria-expanded={openMobile === item.label}
                 >

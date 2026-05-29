@@ -146,19 +146,18 @@ const ExpertsSection = () => (
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white/90 px-4 py-2 shadow-[0_10px_30px_rgba(249,115,22,0.08)] backdrop-blur">
           <BadgeCheck size={14} className="text-orange-500" strokeWidth={2.4} />
-          <span className="font-['Manrope'] text-[11px] font-extrabold uppercase tracking-[0.22em] text-orange-600">
+          <span className="type-eyebrow text-[11px] text-orange-600">
             Experts You Can Trust
           </span>
         </div>
 
         <h2
-          className="mx-auto max-w-3xl text-[34px] font-semibold leading-tight tracking-[-0.035em] text-gray-950 sm:text-[42px] lg:text-[50px]"
-          style={{ fontFamily: '"Lucida Sans", "Lucida Grande", "Trebuchet MS", Arial, sans-serif' }}
+          className="type-heading mx-auto max-w-3xl text-[34px] text-gray-950 sm:text-[42px] lg:text-[50px]"
         >
           The Outsourced Technical Support Experts
         </h2>
         <div className="mx-auto mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500" />
-        <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-8 text-gray-600 sm:text-base">
+        <p className="type-body mx-auto mt-6 max-w-2xl text-[15px] text-gray-600 sm:text-base">
           We provide 24/7 transparent technical support for web hosting companies, data centers,
           server management companies, and MSPs.
         </p>
@@ -182,8 +181,10 @@ const ExpertsSection = () => (
                 {card.icon}
               </div>
             </div>
-            <h3 className="relative text-center text-[19px] font-black tracking-[-0.025em] text-gray-950">{card.title}</h3>
-            <p className="relative mt-5 text-center text-[14px] leading-7 text-gray-600">{card.description}</p>
+            <h3 className="type-card-title relative text-center text-[20px] text-gray-950">
+              {card.title}
+            </h3>
+            <p className="type-card-body relative mt-5 text-center text-[14px] text-gray-600">{card.description}</p>
             <div className="absolute inset-x-8 bottom-0 h-1 rounded-t-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 opacity-90" />
           </article>
         ))}
@@ -192,17 +193,16 @@ const ExpertsSection = () => (
 
       <div className="relative mx-auto mt-24 max-w-[1120px]">
         <div className="relative mx-auto max-w-2xl text-center">
-          <span className="font-['Manrope'] text-[11px] font-black uppercase tracking-[0.26em] text-orange-500">
+          <span className="type-eyebrow text-[11px] text-orange-500">
             Technologies We Support
           </span>
           <h3
-            className="mt-3 text-[32px] font-semibold tracking-[-0.035em] text-gray-950 sm:text-[40px]"
-            style={{ fontFamily: '"Lucida Sans", "Lucida Grande", "Trebuchet MS", Arial, sans-serif' }}
+            className="type-heading mt-3 text-[32px] text-gray-950 sm:text-[40px]"
           >
             Supported Platforms
           </h3>
           <div className="mx-auto mt-4 h-1 w-14 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
-          <p className="mt-4 text-[15px] leading-7 text-gray-500">
+          <p className="type-body mt-4 text-[15px] text-gray-500">
             Covering all major technology platforms to bring you excellent outsourced support.
           </p>
         </div>

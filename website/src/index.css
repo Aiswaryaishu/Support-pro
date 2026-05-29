@@ -17,6 +17,70 @@
 }
 
 @layer components {
+  .type-display {
+    font-family: Sora, 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+  }
+
+  .type-heading {
+    font-family: Sora, 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .type-card-title {
+    font-family: Sora, 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.18;
+  }
+
+  .type-eyebrow {
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .type-nav {
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+
+  .type-body {
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+  }
+
+  .type-card-body {
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  .type-button {
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .trust-globe {
+    animation: trust-globe-drift 9s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .trust-globe-lines {
+    animation: trust-globe-lines 14s linear infinite;
+    transform-origin: center;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand-600 text-white font-semibold text-sm transition-all duration-300 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/30 hover:-translate-y-0.5 active:translate-y-0;
   }
@@ -34,6 +98,24 @@
   }
   .card-dark {
     @apply rounded-2xl border border-white/8 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/15;
+  }
+}
+
+@keyframes trust-globe-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-8px, 4px, 0) scale(1.025);
+  }
+}
+
+@keyframes trust-globe-lines {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

@@ -92,7 +92,7 @@ const Footer = () => (
               draggable={false}
             />
           </a>
-          <p className="mt-5 max-w-[270px] text-[13px] leading-7 text-slate-300">
+          <p className="type-card-body mt-5 max-w-[270px] text-[13px] text-slate-300">
             Managed cloud, server &amp; helpdesk solutions that keep your business secure,
             optimized, and always running.
           </p>
@@ -111,7 +111,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <h3 className="font-['Manrope'] text-[11px] font-black uppercase tracking-[0.2em] text-orange-400">
+          <h3 className="type-eyebrow text-[11px] text-orange-400">
             Contact Us
           </h3>
           <div className="mt-5 h-px w-10 bg-orange-500" />
@@ -120,8 +120,8 @@ const Footer = () => (
               <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-orange-400">
                 <Phone size={17} />
               </span>
-              <div className="text-[13px] leading-6 text-slate-300">
-                <p className="font-bold text-white">Sales &amp; Support</p>
+              <div className="type-card-body text-[13px] text-slate-300">
+                <p className="type-button text-white">Sales &amp; Support</p>
                 <a href="tel:18476076123">1-(847)-607-6123</a>
               </div>
             </div>
@@ -129,7 +129,7 @@ const Footer = () => (
               <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-orange-400">
                 <Mail size={17} />
               </span>
-              <div className="text-[13px] leading-6 text-slate-300">
+              <div className="type-card-body text-[13px] text-slate-300">
                 <p>Sales: sales@supportpro.com</p>
                 <p>Support: support@supportpro.com</p>
                 <p>MS Team: support@supportpro.com</p>
@@ -139,8 +139,8 @@ const Footer = () => (
               <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-orange-400">
                 <MapPin size={17} />
               </span>
-              <div className="text-[13px] leading-6 text-slate-300">
-                <p className="font-bold text-white">Postal Address</p>
+              <div className="type-card-body text-[13px] text-slate-300">
+                <p className="type-button text-white">Postal Address</p>
                 <p>
                   1020 Milwaukee Ave, #245,
                   <br />
@@ -154,7 +154,7 @@ const Footer = () => (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {footerColumns.map((column) => (
             <div key={column.title}>
-              <h3 className="font-['Manrope'] text-[11px] font-black uppercase tracking-[0.2em] text-orange-400">
+              <h3 className="type-eyebrow text-[11px] text-orange-400">
                 {column.title}
               </h3>
               <div className="mt-5 h-px w-10 bg-orange-500" />
@@ -163,7 +163,7 @@ const Footer = () => (
                   <li key={link}>
                     <a
                       href="/"
-                      className="group flex items-center justify-between gap-3 text-[13px] font-medium text-slate-300 transition hover:text-orange-400"
+                      className="type-card-body group flex items-center justify-between gap-3 text-[13px] text-slate-300 transition hover:text-orange-400"
                     >
                       <span>{link}</span>
                       <ChevronRight size={14} className="opacity-60 transition group-hover:translate-x-1" />
@@ -177,8 +177,8 @@ const Footer = () => (
       </div>
 
       <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[12px] text-slate-400">© 2026 SupportPRO.com. All Rights Reserved.</p>
-        <div className="flex items-center gap-5 text-[12px] font-medium text-slate-400">
+        <p className="type-card-body text-[12px] text-slate-400">© 2026 SupportPRO.com. All Rights Reserved.</p>
+        <div className="type-card-body flex items-center gap-5 text-[12px] text-slate-400">
           <a href="/" className="transition hover:text-orange-400">Privacy Statement</a>
           <a href="/" className="transition hover:text-orange-400">Terms of Use</a>
         </div>

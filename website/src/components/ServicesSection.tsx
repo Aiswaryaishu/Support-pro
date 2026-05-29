@@ -183,39 +183,40 @@ const ServicesSection = () => (
       <div className="mx-auto max-w-3xl text-center">
         <div className="mb-4 flex items-center justify-center gap-3">
           <span className="h-px w-12 bg-gradient-to-r from-transparent to-orange-500" />
-          <span className="font-['Manrope'] text-[12px] font-black uppercase tracking-[0.36em] text-orange-400">
+          <span className="type-eyebrow text-[11px] text-orange-400 sm:text-[12px]">
             What We Do
           </span>
           <span className="h-px w-12 bg-gradient-to-l from-transparent to-orange-500" />
         </div>
         <h2
-          className="text-[32px] font-semibold tracking-[-0.035em] text-white sm:text-[40px]"
-          style={{ fontFamily: '"Lucida Sans", "Lucida Grande", "Trebuchet MS", Arial, sans-serif' }}
+          className="type-heading text-[32px] text-white sm:text-[40px]"
         >
           Our Services
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-slate-300">
+        <p className="type-body mx-auto mt-5 max-w-xl text-[15px] text-slate-300">
           Comprehensive IT solutions tailored to keep your business secure, optimized, and always running.
         </p>
       </div>
 
-      <div className="relative mt-14 overflow-hidden py-3">
+      <div className="relative mt-10 overflow-x-auto overflow-y-visible snap-x snap-mandatory scroll-px-4 pb-4 pt-3 md:mt-14 md:overflow-hidden md:snap-none md:py-3">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 sm:w-28"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-20 sm:w-28 md:block"
           style={{ background: 'linear-gradient(90deg, #050505 0%, transparent 100%)' }}
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 sm:w-28"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-20 sm:w-28 md:block"
           style={{ background: 'linear-gradient(270deg, #050505 0%, transparent 100%)' }}
           aria-hidden="true"
         />
 
-        <div className="flex w-max items-stretch gap-6 animate-marquee hover:[animation-play-state:paused]">
+        <div className="flex w-max items-stretch gap-4 md:gap-6 md:animate-marquee md:hover:[animation-play-state:paused]">
         {[...services, ...services].map((service, index) => (
           <article
             key={`${service.title}-${index}`}
-            className="group relative min-h-[310px] w-[300px] flex-shrink-0 overflow-hidden rounded-[30px] border border-orange-400/25 bg-zinc-950/80 p-7 shadow-[0_24px_80px_rgba(0,0,0,0.48)] transition duration-300 hover:-translate-y-2 hover:border-orange-400/70 hover:shadow-[0_34px_100px_rgba(249,115,22,0.20)] focus-within:border-orange-400/70 sm:w-[340px] lg:w-[370px]"
+            className={`group relative min-h-[330px] w-[calc(100vw-3rem)] max-w-[340px] flex-shrink-0 snap-center overflow-hidden rounded-[30px] border border-orange-400/25 bg-zinc-950/80 p-7 shadow-[0_24px_80px_rgba(0,0,0,0.48)] transition duration-300 hover:-translate-y-2 hover:border-orange-400/70 hover:shadow-[0_34px_100px_rgba(249,115,22,0.20)] focus-within:border-orange-400/70 md:min-h-[310px] md:w-[340px] md:max-w-none lg:w-[370px] ${
+              index >= services.length ? 'hidden md:block' : ''
+            }`}
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-80 saturate-[1.14] contrast-[1.06] brightness-[0.78] transition duration-700 group-hover:scale-105 group-hover:opacity-90"
@@ -245,29 +246,19 @@ const ServicesSection = () => (
 
             <div className="absolute inset-x-7 bottom-7 max-w-[310px]">
               {/* Default: icon + title */}
-              <div className="flex items-end gap-4 rounded-3xl border border-orange-400/25 bg-black/68 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.38)] backdrop-blur-md transition duration-300 md:group-hover:-translate-y-3 md:group-hover:opacity-0 md:group-focus-within:-translate-y-3 md:group-focus-within:opacity-0">
-                <div className="flex h-[58px] w-[58px] flex-shrink-0 items-center justify-center rounded-[20px] border border-orange-400/35 bg-gradient-to-br from-orange-500 to-amber-400 text-white shadow-[0_14px_36px_rgba(249,115,22,0.32)] transition duration-300 group-hover:scale-105">
-                  {service.icon}
-                </div>
-                <div>
-                  <h3 className="text-[21px] font-extrabold leading-tight tracking-[-0.025em] text-white">
-                    {service.title}
-                  </h3>
-                  <div className="mt-3 h-1 w-10 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
-                </div>
+              <div className="hidden rounded-3xl border border-orange-400/25 bg-black/68 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.38)] backdrop-blur-md transition duration-300 md:block md:group-hover:-translate-y-3 md:group-hover:opacity-0 md:group-focus-within:-translate-y-3 md:group-focus-within:opacity-0">
+                <h3 className="type-card-title text-[21px] text-white">
+                  {service.title}
+                </h3>
+                <div className="mt-3 h-1 w-10 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
               </div>
 
               {/* Hover: description replaces title */}
               <div className="mt-0 rounded-2xl border border-orange-400/25 bg-black/78 p-5 opacity-100 shadow-[0_18px_50px_rgba(0,0,0,0.42)] backdrop-blur-lg transition duration-300 md:absolute md:inset-x-0 md:bottom-0 md:translate-y-5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-within:translate-y-0 md:group-focus-within:opacity-100">
-                <div className="mb-3 flex items-center gap-3">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-orange-400/35 bg-orange-500/15 text-orange-300">
-                    {service.icon}
-                  </div>
-                  <span className="text-[12px] font-black uppercase tracking-[0.18em] text-orange-300">
-                    {service.title}
-                  </span>
-                </div>
-                <p className="text-[14px] font-medium leading-6 text-slate-200">
+                <h3 className="type-eyebrow mb-3 text-[12px] text-orange-300">
+                  {service.title}
+                </h3>
+                <p className="type-card-body text-[14px] text-slate-200">
                   {service.description}
                 </p>
                 <a
@@ -284,20 +275,21 @@ const ServicesSection = () => (
         </div>
       </div>
 
-      <div className="mt-10 grid gap-4 rounded-[26px] border border-orange-400/25 bg-black/55 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-2 gap-3 rounded-[28px] border border-orange-400/20 bg-black/45 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-xl sm:gap-4 sm:p-5 lg:grid-cols-4">
         {metrics.map((metric, index) => (
           <div
             key={metric.title}
-            className={`flex items-center gap-4 rounded-2xl px-4 py-4 transition hover:bg-orange-500/10 ${
+            className={`group relative overflow-hidden rounded-2xl border border-orange-400/15 bg-white/[0.035] p-4 transition hover:border-orange-400/35 hover:bg-orange-500/10 ${
               index !== metrics.length - 1 ? 'lg:border-r lg:border-orange-400/15' : ''
             }`}
           >
-            <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-orange-400/35 bg-gradient-to-br from-orange-500 to-amber-400 text-white shadow-[0_14px_34px_rgba(249,115,22,0.28)]">
+            <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-orange-500/10 blur-2xl transition group-hover:bg-orange-500/20" aria-hidden="true" />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-300/35 bg-gradient-to-br from-orange-500 to-amber-400 text-white shadow-[0_12px_28px_rgba(249,115,22,0.26)] sm:h-14 sm:w-14">
               {metric.icon}
             </div>
-            <div>
-              <h3 className="text-base font-bold text-white">{metric.title}</h3>
-              <p className="mt-1 text-[13px] leading-5 text-slate-400">{metric.description}</p>
+            <div className="relative mt-4">
+              <h3 className="type-card-title text-[13px] text-white sm:text-base">{metric.title}</h3>
+              <p className="type-card-body mt-2 text-[11px] text-slate-400 sm:text-[13px]">{metric.description}</p>
             </div>
           </div>
         ))}

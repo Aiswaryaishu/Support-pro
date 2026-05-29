@@ -9,7 +9,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 const App = () => (
-  <div className="min-h-screen bg-white">
+  <div className="min-h-screen overflow-x-hidden bg-white">
     <Header />
     <main>
       <Hero />
