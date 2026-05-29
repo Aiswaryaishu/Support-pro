@@ -4,6 +4,9 @@ import TrustStrip from './components/TrustStrip';
 import ExpertsSection from './components/ExpertsSection';
 import ServicesSection from './components/ServicesSection';
 import WhyExpertsSection from './components/WhyExpertsSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
 const App = () => (
   <div className="min-h-screen bg-white">
@@ -14,8 +17,10 @@ const App = () => (
       <ExpertsSection />
       <ServicesSection />
       <WhyExpertsSection />
-      {/* Additional sections will be added one by one as designs are provided */}
+      <TestimonialsSection />
+      <ContactSection />
     </main>
+    <Footer />
   </div>
 );
 

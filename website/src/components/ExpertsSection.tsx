@@ -164,25 +164,27 @@ const ExpertsSection = () => (
         </p>
       </div>
 
-      <div className="relative mt-16">
+      <div className="relative mt-14">
         <div
-          className="absolute left-1/2 top-1/2 hidden h-24 w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-100/45 blur-3xl lg:block"
+          className="absolute left-1/2 top-1/2 hidden h-24 w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-100/35 blur-3xl lg:block"
           aria-hidden="true"
         />
-        <div className="relative grid items-stretch gap-8 lg:grid-cols-3">
+        <div className="relative grid items-stretch gap-7 lg:grid-cols-3">
         {supportCards.map((card) => (
           <article
             key={card.title}
-            className="group relative flex min-h-[290px] flex-col rounded-[30px] border border-white bg-white/92 px-7 pb-8 pt-14 shadow-[0_20px_70px_rgba(15,23,42,0.10)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-200 hover:shadow-[0_28px_80px_rgba(249,115,22,0.18)]"
+            className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[28px] border border-orange-100/70 bg-white px-8 pb-8 pt-12 shadow-[0_18px_55px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-200 hover:shadow-[0_26px_75px_rgba(249,115,22,0.14)]"
           >
-            <div className="absolute inset-x-8 bottom-0 h-1.5 rounded-t-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 opacity-90" />
-            <div className="absolute left-1/2 top-0 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-orange-100 bg-white shadow-[0_16px_44px_rgba(249,115,22,0.20)]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-[22px] bg-gradient-to-br from-orange-500 to-amber-400 shadow-[0_10px_24px_rgba(249,115,22,0.28)]">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-200 to-transparent" />
+            <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-orange-50 blur-2xl transition duration-300 group-hover:scale-125" />
+            <div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-[28px] border border-orange-100 bg-orange-50 shadow-[0_14px_34px_rgba(249,115,22,0.12)]">
+              <div className="flex h-14 w-14 items-center justify-center rounded-[20px] bg-gradient-to-br from-orange-500 to-amber-400 shadow-[0_10px_24px_rgba(249,115,22,0.28)]">
                 {card.icon}
               </div>
             </div>
-            <h3 className="text-center text-xl font-bold tracking-[-0.02em] text-gray-950">{card.title}</h3>
-            <p className="mt-5 text-[14px] leading-7 text-gray-600">{card.description}</p>
+            <h3 className="relative text-center text-[19px] font-black tracking-[-0.025em] text-gray-950">{card.title}</h3>
+            <p className="relative mt-5 text-center text-[14px] leading-7 text-gray-600">{card.description}</p>
+            <div className="absolute inset-x-8 bottom-0 h-1 rounded-t-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 opacity-90" />
           </article>
         ))}
         </div>

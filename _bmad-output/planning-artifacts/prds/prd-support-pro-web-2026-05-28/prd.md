@@ -2,13 +2,15 @@
 title: SupportPRO Website Redesign — Product Requirements Document
 status: draft
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-05-29
 project: support-pro-web
 sources:
   - https://www.supportpro.com/ (live site content, 2026-05-28)
+  - https://www.supportpro.com/ (live site content and SEO baseline, 2026-05-29)
   - SupportPRO Website Revamp Document (user-provided brief, 2026-05-28)
   - DESIGN.md — UX visual identity spine (2026-05-28)
   - EXPERIENCE.md — UX experience spine (2026-05-28)
+  - Current React implementation in website/src/components (visual revamp, 2026-05-29)
 ---
 
 # SupportPRO Website Redesign — PRD
@@ -65,6 +67,7 @@ The redesign must modernize the presentation layer only. All existing content, l
 - Contact and quote form (preserve existing submission behavior; improve states)
 - Footer redesign (preserve all existing links and contact information)
 - Visual system: tokens, typography, spacing, cards, CTAs per DESIGN.md
+- SEO structure for homepage and templates: one H1 per page, semantic H2 section headings, page metadata, canonical URL, Open Graph/Twitter metadata, and crawler-readable content.
 
 ### Out of scope
 
@@ -74,6 +77,45 @@ The redesign must modernize the presentation layer only. All existing content, l
 - Backend systems, CRM integrations, or pricing logic
 - New services not currently on the live site
 - Multi-language support [ASSUMPTION: English-only, consistent with live site]
+
+---
+
+## Current Revamp Direction
+
+The active design direction is a warm orange, cream, white, and black SupportPRO revamp, not the earlier blue enterprise-dashboard direction. Requirements must align to the current implementation style:
+
+- Hero: warm orange/cream background, single static support visual, floating support cards, orange Request for Quote CTA, and a smooth cream wave transition into the trust section.
+- Certification strip: cream/white background with the eyebrow "Trusted by thousands", H2 "Certified. Secure. Trusted Worldwide.", certification cards, and a 23+ Years Experience seal.
+- Expert section: clean white background with subtle neutral depth, orange icon badges, and three white value cards for Transparent Technical Support, 24/7 Customer Support, and Proactive Server Management.
+- Services section: black background with visible orange line accents, dark glass service cards, orange icon blocks, and white readable text.
+- Why experts / number game: white or soft cream surfaces, glassmorphic expertise overlay, and compact white number cards with orange gradient icons.
+
+### Homepage SEO Heading Map
+
+The homepage must use exactly one H1:
+
+- H1: "Expert IT Support You Can Rely On"
+
+Recommended H2s, in visual order:
+
+1. "Certified. Secure. Trusted Worldwide."
+2. "The Outsourced Technical Support Experts"
+3. "Supported Platforms"
+4. "Our Services"
+5. "Why we call Ourselves the Experts"
+6. "Our Number Game"
+7. "What Our Customers Say" or existing testimonials heading
+8. "Drop Us A Message" / "Contact Us"
+
+Section eyebrow labels such as "Trusted by thousands", "Experts You Can Trust", and "What We Do" must not replace semantic H2 headings.
+
+### Homepage Metadata Target
+
+- Title: "Transparent Outsourced Web Hosting Tech Support | SupportPRO"
+- Meta description: "SupportPRO provides 24/7 outsourced technical support, cloud management, server administration, helpdesk support, and emergency support for web hosting companies, MSPs, data centers, and SaaS businesses."
+- Canonical URL: "https://www.supportpro.com/"
+- Open Graph title and description must match or closely mirror the page title and meta description.
+- The first viewport must contain crawlable text naming outsourced technical support, cloud/server support, 24/7 availability, and Request for Quote.
 
 ---
 
@@ -101,20 +143,19 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 **F-2.1** Replace the current slider-based hero with a single static trust-first hero.
 
-**F-2.2** Headline communicates the primary value proposition: 24/7 outsourced technical support for hosting, cloud, and server businesses.
+**F-2.2** The hero contains the page's only H1: "Expert IT Support You Can Rely On".
 
-**F-2.3** Subheadline names the key services (cloud management, server administration, helpdesk, emergency support) and primary customer types (hosting companies, MSPs, data centers, SaaS, service providers).
+**F-2.3** Subheadline names the key services in crawlable text: managed cloud, server, and helpdesk solutions that are proactive, secure, and available around the clock.
 
-**F-2.4** Three CTAs visible above the fold:
-  - Primary: Request for Quote (pill button, brand blue)
-  - Secondary: Get Free Server Checkup (outline/glass button)
-  - Urgent link: "Need urgent help? Get Emergency Support" (orange text link)
+**F-2.4** Primary CTA visible above the fold: Request for Quote (orange pill button). Secondary CTAs may appear in the header or later sections, but the hero must not visually compete with the primary quote path.
 
-**F-2.5** Four to five trust chips below the CTAs: Since 2003, 24/7/365 Support, White-Label Support, Certified Experts, US + Offshore Delivery.
+**F-2.5** Hero visual uses the current warm orange/cream art direction: floating glass cards for Cloud Support, Secure & Safe, Live Monitoring, and 24/7 Desk around the support headset visual.
 
-**F-2.6** Desktop: hero visual on the right side — a support operations dashboard concept showing live support queue, server health status, engineer availability, response time, and resolution time metrics. Visual must not imply SupportPRO is a software product.
+**F-2.6** Desktop: hero visual appears on the right side. It must communicate technical support operations without implying SupportPRO is a software product.
 
 **F-2.7** Mobile: hero visual is hidden; copy and CTAs stack in a single column.
+
+**F-2.8** Hero ends with a smooth cream wave transition into the certification strip, including subtle orange contour lines. The wave is decorative and must be `aria-hidden`.
 
 ---
 
@@ -126,7 +167,11 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 **F-3.3** Every logo has an accessible text label. If an image fails to load, the label remains visible.
 
-**F-3.4** Strip heading: "Trusted Technical Support Backed by Certified Processes".
+**F-3.4** Strip eyebrow: "Trusted by thousands".
+
+**F-3.5** Strip H2: "Certified. Secure. Trusted Worldwide."
+
+**F-3.6** Visual treatment matches the reference revamp: cream/white background, centered heading, soft white cards, subtle decorative dots/plus marks, and orange accents.
 
 ---
 
@@ -139,11 +184,13 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 **F-4.2** Each card: icon, heading, 2–3 line description, optional micro CTA linking to the relevant service page.
 
+**F-4.3** Visual treatment: white background, subtle neutral depth, orange circular icon badges above each card, white cards, and orange bottom accent lines.
+
 ---
 
-### F-5 — Service Finder ("What Type of Support Do You Need?")
+### F-5 — Guided Support Entry Points
 
-**F-5.1** Six guided need cards, each linking to an existing service page:
+**F-5.1** If included, six guided need cards link to existing service pages:
   1. Cloud infrastructure support → Cloud Management
   2. Server management → Dedicated Server Support
   3. Outsourced customer support → Helpdesk Support
@@ -154,6 +201,8 @@ The redesign must modernize the presentation layer only. All existing content, l
 **F-5.2** Each card: icon, need-led title, 1–2 line descriptor, CTA text with arrow affordance.
 
 **F-5.3** Whole card is a link. Accessible name derived from card title.
+
+**F-5.4** This section may be omitted from the first homepage cut if the black "Our Services" section provides the primary service discovery path and preserves all six service routes.
 
 ---
 
@@ -167,6 +216,8 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 **F-6.4** Platform labels remain visible if logos are unavailable.
 
+**F-6.5** In the current revamp, the visible H2 may be "Supported Platforms" if the surrounding copy makes the platform purpose clear.
+
 ---
 
 ### F-7 — Our Services
@@ -179,9 +230,15 @@ The redesign must modernize the presentation layer only. All existing content, l
   5. Emergency Server / Cloud Support (urgent styling)
   6. Application Development
 
-**F-7.2** Each card: accent line, icon, title, 1–2 line description, Learn More link to the existing service page. Learn More has an accessible label including the service name.
+**F-7.2** Section eyebrow: "What We Do".
 
-**F-7.3** Section-level CTA after the grid: "Get a Custom Quote for Your Business" → Request for Quote.
+**F-7.3** Section H2: "Our Services".
+
+**F-7.4** Each card: image, dark overlay, orange icon block, title, orange accent line, 1–2 line description, and Learn More affordance to the existing service page. Learn More has an accessible label including the service name.
+
+**F-7.5** Visual treatment: black background, visible orange line accents (not orange gradient glows), dark glass cards, orange borders/icons, and white readable text.
+
+**F-7.6** Section-level CTA after the grid: "Get a Custom Quote for Your Business" → Request for Quote.
 
 ---
 
@@ -203,6 +260,8 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 **F-8.4** Section CTA: Request a Quote → quote flow.
 
+**F-8.5** Current revamp visual treatment: image-led proof section with a dark glassmorphic "Our Expertise" overlay. Overlay text must be white for contrast; percentages remain orange.
+
 ---
 
 ### F-9 — Expertise Areas
@@ -220,7 +279,7 @@ The redesign must modernize the presentation layer only. All existing content, l
 
 ### F-10 — Metrics Section
 
-**F-10.1** Heading: "Our Numbers Since January 2015".
+**F-10.1** Eyebrow/pill label: "Our number game - Starts from January 2015 to May 2026".
 
 **F-10.2** Four metric cards from the live site:
   - Helpdesk Tickets Handled
@@ -233,6 +292,8 @@ The redesign must modernize the presentation layer only. All existing content, l
 **F-10.4** Metrics reveal on scroll (intersection observer). Rendered final values must be readable without animation (reduced-motion compliance).
 
 **F-10.5** Section CTA after metrics: "Start Working with SupportPRO" → Request for Quote.
+
+**F-10.6** Visual treatment matches the reference revamp: cream background panel, centered pill heading, compact white statistic cards, orange gradient icon tiles, large black numbers, and subtle decorative dots/plus marks.
 
 ---
 
@@ -382,6 +443,22 @@ All existing service pages adopt the following consistent section structure:
 
 **NFR-14** Structured data (if present on the existing site) must be carried forward.
 
+**NFR-14.1** Homepage must have exactly one H1. The current revamp H1 is "Expert IT Support You Can Rely On".
+
+**NFR-14.2** Homepage H2s must map to meaningful sections, not decorative eyebrow labels. Target H2s are listed in "Homepage SEO Heading Map".
+
+**NFR-14.3** The homepage title tag must target the existing live-site SEO position: "Transparent Outsourced Web Hosting Tech Support | SupportPRO" or a close equivalent approved by marketing.
+
+**NFR-14.4** Homepage meta description must mention SupportPRO, 24/7 outsourced technical support, cloud management, server administration, helpdesk support, emergency support, and target audiences including hosting companies, MSPs, data centers, and SaaS businesses.
+
+**NFR-14.5** Every indexable page template must define: title, meta description, canonical URL, Open Graph title, Open Graph description, Open Graph image, Twitter card metadata, and robots directives.
+
+**NFR-14.6** Service pages must use service-specific H1s and metadata derived from existing live page intent. Example pattern: "[Service Name] | SupportPRO" with descriptions that preserve the existing service promise and CTA.
+
+**NFR-14.7** Metadata must be present in initial HTML where the chosen rendering stack supports it. If the project remains Vite/CSR, the architecture must explicitly document crawler limitations and mitigation. If migrating to Next.js SSG, metadata should use static route-level metadata.
+
+**NFR-14.8** Decorative SVG waves, line accents, dots, gradients, and background images must be hidden from assistive technology and must not create extra heading or landmark noise.
+
 ---
 
 ### Browser and Device Support
@@ -415,6 +492,8 @@ All existing service pages adopt the following consistent section structure:
 | OQ-5 | Should the blog page redesign be in scope for the first release, or deferred to a subsequent phase? | PM | No |
 | OQ-6 | Are service page content rewrites in scope, or is the layout template the only deliverable for service pages? | PM | No |
 | OQ-7 | Is ISO 9001:2015 certification currently active and should it appear in the certification strip? (Live site mentions it in copy but not in the badge strip.) | Marketing | No |
+| OQ-8 | Does Marketing approve the homepage title/meta description target, or should the exact live title "Transparent outsourced web hosting tech support \|SupportPRO" be preserved verbatim? | Marketing / SEO | No |
+| OQ-9 | Is Google Search Console data available to prioritize service-page metadata and ranking-sensitive URLs? | Marketing / SEO | No |
 
 ---
 
@@ -426,6 +505,8 @@ All existing service pages adopt the following consistent section structure:
 - `[ASSUMPTION]` Metric values (F-10) will be provided by the engineering team from an existing data source before launch.
 - `[ASSUMPTION]` The contact form currently submits to an existing backend or email handler; the redesign must wire to the same endpoint.
 - `[ASSUMPTION]` Social media accounts exist; exact URLs to be confirmed by Marketing.
+- `[ASSUMPTION]` The current visual revamp is the source of truth for homepage section styling and order unless UX explicitly supersedes it.
+- `[ASSUMPTION]` Homepage SEO may improve wording while preserving the live site's outsourced web hosting tech support intent.
 
 ---
 
@@ -438,6 +519,10 @@ Before this redesign is considered ready for production:
 - [ ] Emergency Support is reachable from header, hero, service finder, contact quick actions, and footer.
 - [ ] Hero section explains SupportPRO's offer and audience in the first viewport.
 - [ ] Certification strip appears immediately after the hero.
+- [ ] Homepage has exactly one H1: "Expert IT Support You Can Rely On".
+- [ ] Homepage H2 hierarchy matches the approved section map.
+- [ ] Homepage title, meta description, canonical URL, Open Graph metadata, and Twitter card metadata are defined.
+- [ ] Service page template includes service-specific H1 and metadata requirements.
 - [ ] All three testimonials display directly on desktop (not carousel-only).
 - [ ] Contact form shows loading, success, and error states.
 - [ ] Metric values are real data from the existing source (not placeholders).

@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [1, 2]
+stepsCompleted: [1, 2, 3]
 inputDocuments:
   - _bmad-output/planning-artifacts/prds/prd-support-pro-web-2026-05-28/prd.md
   - _bmad-output/planning-artifacts/ux-designs/ux-support-pro-web-2026-05-28/DESIGN.md
@@ -8,6 +8,7 @@ workflowType: architecture
 project_name: support-pro-web
 user_name: Aiswarya Binu
 date: 2026-05-28
+lastStep: 4
 ---
 
 # Architecture Decision Document — SupportPRO Website Redesign
@@ -74,3 +75,99 @@ Multi-agent roundtable analysis (Amelia/John/Sally) independently converged:
 ### Open Question for Implementation Prioritization
 
 - **OQ-Arch-1:** Does the client have Google Search Console access? Knowing which service pages currently rank determines migration order priority.
+
+---
+
+## Starter Template Evaluation
+
+### Primary Technology Domain
+
+Responsive B2B marketing website with multiple indexable routes, service pages, plan pages, blog/resources, contact/quote flows, and SEO-sensitive homepage content.
+
+### Starter Options Considered
+
+#### Option 1 — Keep Existing Vite + React + TypeScript + Tailwind
+
+**Strengths:**
+- Matches current implementation in `website/`.
+- Fast development server and simple build pipeline.
+- Existing homepage components can continue with minimal migration.
+
+**Risks:**
+- Pure CSR means crawlers and social scrapers may receive weak initial HTML.
+- Page titles, meta descriptions, canonical tags, Open Graph, and Twitter metadata require client-side mutation or custom prerendering.
+- Static service-page metadata would require extra infrastructure or generated HTML per route.
+
+**Fit:** Good for an app-like SPA; weaker for a SEO-sensitive marketing website.
+
+#### Option 2 — Next.js App Router + TypeScript + Tailwind
+
+**Strengths:**
+- Native route structure for homepage, service pages, plan pages, and blog/resources.
+- Static metadata via route-level `metadata` / `generateMetadata`.
+- Supports SSG/pre-rendered HTML, improving SEO and first-load trust.
+- Existing React components can be migrated mechanically.
+- Aligns with architecture concern that SupportPRO's domain authority and service-page SEO are core business assets.
+
+**Risks:**
+- Requires migrating from Vite app structure to Next.js app structure.
+- Client-only components must be marked intentionally.
+- Static export requires explicit handling for dynamic routes if pure static hosting is selected.
+
+**Fit:** Best match for current PRD, UX, SEO, metadata, and accessibility requirements.
+
+#### Option 3 — Astro + React Islands + Tailwind
+
+**Strengths:**
+- Static HTML by default.
+- Very strong marketing-site SEO and performance profile.
+- React can be used only for interactive islands.
+
+**Risks:**
+- Introduces `.astro` templates plus React islands.
+- Requires deciding which UI remains Astro vs React.
+- More workflow change for a project already implemented as React components.
+
+**Fit:** Technically strong, but less aligned with the current React-first implementation path.
+
+### Selected Starter: Next.js App Router Official Starter
+
+**Rationale for Selection:**
+
+Use the official Next.js starter because the product is not just a visual homepage. It is a SEO-sensitive SupportPRO marketing site with indexable service pages, metadata requirements, canonical URLs, Open Graph/Twitter cards, accessibility expectations, and performance targets.
+
+Next.js gives the project a framework-native way to express these requirements without custom crawler workarounds. It also preserves the team's React/Tailwind component model, so the existing homepage components can migrate with less disruption than an Astro rewrite.
+
+Party Mode review confirmed this selection from four perspectives:
+- Architecture: Next.js preserves React/Tailwind while adding SSG, route metadata, canonical handling, semantic pre-rendered HTML, image/font optimization, and future dynamic flexibility.
+- Implementation: Next.js minimizes accidental rewrite risk compared with Astro and avoids bolting prerender/metadata infrastructure onto Vite CSR later.
+- UX/SEO: Next.js protects discoverability, first impression, accessibility, content hierarchy, and shared-link previews.
+- Product: Next.js best supports SupportPRO's SEO-sensitive marketing goal while controlling scope and preserving content equity.
+
+**Initialization Command:**
+
+```bash
+npx create-next-app@latest website-next --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-npm
+```
+
+**Architectural Decisions Provided by Starter:**
+
+**Language & Runtime:**
+TypeScript-first React project. React component model preserved for existing UI work. App Router route model for homepage, services, plans, blog/resources, and contact pages.
+
+**Styling Solution:**
+Tailwind CSS starter setup. Existing Tailwind utility-first component styling remains compatible. Design tokens from `DESIGN.md` should be mapped into Tailwind theme/classes or shared constants.
+
+**Build Tooling:**
+Next.js production build. Static generation available for marketing pages. Route-level metadata support for title, description, canonical, Open Graph, and Twitter cards.
+
+**Testing Framework:**
+Starter does not fully decide test stack. Architecture should decide later between focused component tests and E2E coverage for navigation, quote/contact flows, accessibility, and SEO metadata.
+
+**Code Organization:**
+Use `src/app` for routes and layouts, `src/components` for reusable UI sections, `src/lib` for metadata, route config, service data, and shared helpers, and `public` for logo, certification, platform, and OG assets.
+
+**Development Experience:**
+Use `npm run dev` for local development. Route-oriented development maps directly to service/page SEO requirements. Existing components can migrate incrementally from `website/src/components`.
+
+**Note:** Project initialization using this command should be the first implementation story. To avoid overwriting the existing Vite implementation, initialize into `website-next` first, migrate components, then decide whether to replace `website/`.

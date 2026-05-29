@@ -3,7 +3,10 @@ name: SupportPRO Website Redesign
 status: draft
 sources:
   - user-provided SupportPRO Website Revamp Document, 2026-05-28
-updated: 2026-05-28
+  - _bmad-output/planning-artifacts/architecture.md, 2026-05-28
+  - _bmad-output/planning-artifacts/prds/prd-support-pro-web-2026-05-28/prd.md, updated 2026-05-29
+  - current website/src/components visual revamp, 2026-05-29
+updated: 2026-05-29
 ---
 
 # SupportPRO Website Redesign — Experience Spine
@@ -16,9 +19,11 @@ Single-surface responsive marketing website with service pages, plan pages, blog
 
 The SupportPRO logo, existing navigation links, service offerings, business model, content meaning, functional flows, contact details, testimonials, certifications, supported platforms, footer links, and SEO-relevant page structure must remain intact.
 
-`DESIGN.md` is the visual identity reference. Use `{colors.navy-900}`, `{colors.blue-600}`, `{colors.gray-50}`, `{typography.display}`, `{rounded.lg}`, and other `DESIGN.md` tokens for implementation. If this experience spine conflicts with a visual detail in `DESIGN.md`, `DESIGN.md` wins for appearance and this file wins for behavior.
+`DESIGN.md` is the visual identity reference. Use `{colors.orange-500}`, `{colors.cream-50}`, `{colors.black-950}`, `{colors.white}`, `{typography.display}`, `{rounded.lg}`, and other `DESIGN.md` tokens for implementation. If this experience spine conflicts with a visual detail in `DESIGN.md`, `DESIGN.md` wins for appearance and this file wins for behavior.
 
 Primary experience goal: make visitors understand within the first few seconds that SupportPRO provides 24/7 outsourced technical support, cloud support, server administration, helpdesk/live chat support, emergency support, and development resources for hosting companies, MSPs, data centers, SaaS companies, and cloud businesses.
+
+Architecture alignment: the UX must support crawler-readable marketing content, stable heading hierarchy, low LCP/CLS, reduced-motion behavior, and metadata-first page rendering. The architecture currently flags CSR-only rendering as risky for SEO and first-load trust; UX must not depend on delayed JavaScript, hidden carousel content, or animation-only messaging for critical comprehension.
 
 ## Information Architecture
 
@@ -44,17 +49,46 @@ Desktop navigation uses grouped mega menus. Mobile navigation uses accordion gro
 |---|---|---|
 | 1 | Sticky Header | Preserve navigation while reducing visual crowding. |
 | 2 | Hero | State what SupportPRO does, who it serves, and why to trust it. |
-| 3 | Certification / Trust Badge Strip | Show proof early: Red Hat, cPanel, BBB, AICPA SOC, ISO 27001, ISO 9001 if available, experience badge. |
+| 3 | Certification / Trust Badge Strip | Show proof early with "Certified. Secure. Trusted Worldwide.": Red Hat, cPanel, BBB, AICPA SOC, ISO 27001, ISO 9001 if available, experience badge. |
 | 4 | Outsourced Technical Support Experts | Explain core value props: transparent support, 24/7 customer support, proactive server management. |
-| 5 | Choose Your Support Need | Guide visitors by need without changing page structure. |
-| 6 | Supported Platforms | Show grouped platform capability instead of a plain logo list. |
-| 7 | Our Services | Present the main service offerings as modern cards. |
-| 8 | Why SupportPRO | Break SupportPRO Difference content into trust-oriented proof points. |
-| 9 | Expertise Areas | Show technical coverage across infrastructure and support. |
-| 10 | Metrics | Make support performance and proof visible. |
-| 11 | Testimonials | Show existing testimonials directly on desktop. |
-| 12 | Contact / Request Consultation | Convert visitors through a clear consultation-style form and quick actions. |
-| 13 | Footer | Preserve all existing footer links in a modern dark layout. |
+| 5 | Supported Platforms | Show platform capability with readable labels/logos. |
+| 6 | Our Services | Present the main service offerings as dark glass cards on a black/orange line-accent section. |
+| 7 | Why SupportPRO / Expertise | Break SupportPRO Difference content into trust-oriented proof points with readable expertise overlay. |
+| 8 | Number Game | Make support performance and proof visible in compact cream/white metric cards. |
+| 9 | Testimonials | Show existing testimonials directly on desktop. |
+| 10 | Contact / Request Consultation | Convert visitors through a clear consultation-style form and quick actions. |
+| 11 | Footer | Preserve all existing footer links in a modern dark layout. |
+
+### Homepage Semantic Heading Contract
+
+The homepage must expose a clean, crawler-readable heading hierarchy:
+
+| Level | Required text / intent | UX rule |
+|---|---|---|
+| H1 | Expert IT Support You Can Rely On | Exactly one H1 on the homepage. It belongs in the hero only. |
+| H2 | Certified. Secure. Trusted Worldwide. | Trust strip heading; eyebrow "Trusted by thousands" is not a heading substitute. |
+| H2 | The Outsourced Technical Support Experts | Expert value proposition section. |
+| H2 | Supported Platforms | Platform capability section. |
+| H2 | Our Services | Services section; eyebrow "What We Do" remains a label. |
+| H2 | Why we call Ourselves the Experts | Proof/expertise section. |
+| H2 | Our Number Game | Metrics section; pill label may retain "Our number game - Starts from January 2015 to May 2026". |
+| H2 | What Our Customers Say / Testimonials | Existing testimonial section. |
+| H2 | Drop Us A Message / Contact Us | Contact conversion section. |
+
+Decorative waves, orange line accents, dots, plus signs, and SVG contours must be hidden from assistive technology and must not create extra headings or landmarks.
+
+### SEO and Metadata Experience Contract
+
+Each indexable page needs initial-page metadata that does not rely on user interaction:
+
+- Homepage title target: "Transparent Outsourced Web Hosting Tech Support | SupportPRO".
+- Homepage meta description must mention 24/7 outsourced technical support, cloud management, server administration, helpdesk support, emergency support, and audiences such as hosting companies, MSPs, data centers, and SaaS businesses.
+- Homepage canonical URL: `https://www.supportpro.com/`.
+- Open Graph and Twitter metadata mirror the page title/description and use a stable image.
+- Service pages use service-specific H1 and metadata derived from the existing live-site service intent.
+- UX copy above the fold must include crawlable text for outsourced technical support, cloud/server/helpdesk support, 24/7 availability, and Request for Quote.
+
+If implementation remains Vite/CSR, UX acceptance must include explicit verification that metadata and first-viewport content are crawler-readable enough for the SEO target. If implementation moves to Next.js SSG as recommended by architecture, these requirements should be fulfilled through static route-level metadata and pre-rendered HTML.
 
 ### Service Page Template
 
@@ -103,13 +137,13 @@ Copy should clarify service fit, reduce decision friction, and keep claims groun
 | Sticky header | Global | Sticks on scroll. Shrinks or adds subtle shadow after scroll. Must not obscure anchor targets. |
 | Mega menu | Desktop navigation | Opens on hover and keyboard focus. Closes on outside click, Escape, or focus leaving menu. Includes short descriptions under major links. |
 | Mobile menu accordion | Mobile navigation | One group can open at a time unless implementation pattern prefers independent accordions. Login, Sign Up, Request for Quote, Free Checkup, and Emergency Support stay easy to reach. |
-| Hero CTA group | Homepage hero | Primary Request for Quote first, Free Server Checkup second, Emergency Support as urgent text/button link. Buttons stack on mobile. |
-| Trust chip | Hero support proof | Non-interactive unless linking to relevant trust/certification section. Keep labels compact. |
-| Certification strip | Post-hero proof | Logo row or grid. Logos must have accessible text labels. |
-| Service finder card | Guided need routing | Whole card clickable only if accessibility semantics are correct. Otherwise title/CTA link is clickable. |
+| Hero CTA group | Homepage hero | Primary Request for Quote is the dominant above-fold action. Secondary actions may appear in header or later sections but must not compete visually with the primary quote path. |
+| Trust chip / floating support card | Hero support proof | Non-interactive unless linking to relevant trust/certification section. Keep labels compact and accessible. |
+| Certification strip | Post-hero proof | Cream/white proof section. Logos must have accessible text labels and visible fallback labels. |
+| Service finder card | Guided need routing | Optional in the first homepage cut if the Our Services section carries the service discovery job. Whole card clickable only if accessibility semantics are correct. |
 | Platform group card | Supported platforms | Groups cloud, server/OS, and hosting panel technologies. Labels stay visible even if logos fail to load. |
-| Service card | Main service discovery | Includes Learn More link to existing service page. Hover can lift card but must not hide content. |
-| Metric card | Proof section | Preserve existing data logic when available. If dynamic counters are used, final values must be readable without animation. |
+| Service card | Main service discovery | Dark glass service card with image and orange icon block. Includes Learn More link to existing service page. Hover can reveal description but must not make essential content inaccessible. |
+| Metric card | Number game proof section | Preserve existing data logic when available. If dynamic counters are used, final values must be readable without animation. |
 | Testimonial card | Trust section | Show at least 2-3 testimonials on desktop. Do not rely only on carousel controls. |
 | Contact form | Lead generation | Preserve existing submission behavior. Show loading, success, and error states. Required fields must be clear. |
 | CTA banner | Repeated conversion | Used after service cards, after metrics, and before footer when appropriate. |
@@ -122,6 +156,7 @@ Copy should clarify service fit, reduce decision friction, and keep claims groun
 | State | Surface | Treatment |
 |---|---|---|
 | Initial page load | Global | Content should render without depending on scroll animation. Skeletons are optional only for dynamic content. |
+| Metadata available | Indexable pages | Title, meta description, canonical, OG/Twitter metadata, and H1 must be available before interaction. |
 | Header scrolled | Global | Add subtle background/shadow and maintain logo clarity. |
 | Mega menu active | Desktop header | Active group highlighted; keyboard focus visible. |
 | Mobile menu open | Mobile header | Body scroll may lock. Escape/backdrop closes menu where supported. |
@@ -141,9 +176,10 @@ Copy should clarify service fit, reduce decision friction, and keep claims groun
 - `Escape` closes open menus, dialogs, and dropdowns.
 - Focus order follows visual reading order.
 - Hover states may enhance cards but cannot be the only way to discover CTAs.
-- Smooth scroll reveal animations are allowed only when subtle and non-blocking.
+- Smooth scroll reveal animations are allowed only when subtle and non-blocking. They cannot delay critical copy, H1/H2 content, CTAs, or trust proof.
 - Avoid carousel-only critical content. If sliders exist, show important items statically on desktop.
 - Emergency Support stays reachable from header, hero, service finder, contact quick actions, and footer.
+- Initial content and metadata must not depend on a carousel, hover state, or JavaScript-only delayed reveal.
 
 ## Accessibility Floor
 
@@ -157,6 +193,7 @@ Behavioral accessibility requirements:
 - Form fields need visible labels, error messages connected to fields, and clear required states.
 - Do not use motion to convey essential information. Respect reduced-motion settings.
 - Urgent color must be paired with text/icon labels so Emergency Support is not color-only.
+- Semantic heading order must remain logical even when visual labels, cards, waves, or decorative SVGs are present.
 
 ## Responsive & Platform
 
@@ -181,8 +218,8 @@ Primary conversion hierarchy:
 CTA placement requirements:
 
 - Header: Request for Quote visible on desktop; mobile menu includes it near the top.
-- Hero: Request for Quote and Free Server Checkup visible above the fold, with Emergency Support nearby.
-- Service finder: each need card routes to the appropriate existing service or support flow.
+- Hero: Request for Quote visible above the fold and visually dominant.
+- Service discovery: Our Services cards route to the appropriate existing service or support flow; optional service finder cards may be added only if they reduce decision friction.
 - Service section: Learn More on every card and a quote CTA after the grid.
 - Metrics: add a quote or consultation CTA after proof section.
 - Contact: form submit, quote quick action, emergency quick action, free checkup quick action.
