@@ -104,7 +104,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-black transition-all duration-300 ${
-        scrolled ? 'shadow-2xl shadow-black/50 border-b border-white/[0.05]' : 'border-b border-white/[0.05]'
+        scrolled ? 'shadow-2xl shadow-black/50 border-b border-white/20' : 'border-b border-white/10'
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -130,8 +130,10 @@ const Header = () => {
                 onMouseLeave={handleLeave}
               >
                 <button
-                  className={`type-nav flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all duration-300 text-[12px] xl:text-[13px] whitespace-nowrap font-medium ${
-                    openDesktop === item.label ? 'text-orange-400 bg-white/[0.04]' : 'text-gray-300 hover:text-orange-400 hover:bg-white/[0.02]'
+                  className={`type-nav flex items-center gap-1.5 px-4 py-2 rounded-full border transition-all duration-300 text-[12px] xl:text-[13px] whitespace-nowrap font-semibold ${
+                    openDesktop === item.label
+                      ? 'text-orange-400 border-orange-500/50 bg-orange-500/10 shadow-lg shadow-orange-500/5'
+                      : 'text-gray-300 border-white/20 bg-white/[0.02] hover:text-orange-400 hover:border-white/50 hover:bg-white/[0.04]'
                   }`}
                   aria-expanded={openDesktop === item.label}
                   aria-haspopup="true"
@@ -256,13 +258,17 @@ const Header = () => {
               </a>
             </div>
             {NAV_ITEMS.map((item) => (
-              <div key={item.label} className="border-b border-white/10">
+              <div key={item.label} className="mb-3">
                 <button
-                  className="type-nav w-full flex items-center justify-between py-4 text-sm text-gray-200"
+                  className={`type-nav w-full flex items-center justify-between px-4 py-3.5 rounded-xl border text-sm transition-all duration-300 ${
+                    openMobile === item.label
+                      ? 'text-orange-400 border-orange-500/40 bg-orange-500/5'
+                      : 'text-gray-200 border-white/20 bg-white/[0.02] hover:bg-white/[0.04]'
+                  }`}
                   onClick={() => setOpenMobile(p => p === item.label ? null : item.label)}
                   aria-expanded={openMobile === item.label}
                 >
-                  <span className="flex items-center gap-2.5">
+                  <span className="flex items-center gap-2.5 font-medium">
                     <span className="text-orange-400">{item.icon}</span>
                     {item.label}
                   </span>
@@ -272,10 +278,10 @@ const Header = () => {
                   />
                 </button>
                 {openMobile === item.label && (
-                  <div className="pl-8 pb-3 space-y-1">
+                  <div className="mt-2 pl-6 pr-4 py-2 space-y-1 bg-white/[0.01] border border-white/5 rounded-xl">
                     {item.links.map((link) => (
                       <a key={link.label} href={link.href} onClick={() => setMobileOpen(false)}
-                        className="block py-2 text-sm text-gray-400 hover:text-orange-400 transition-colors">
+                        className="block py-2.5 px-3 text-sm text-gray-400 hover:text-orange-400 rounded-lg hover:bg-white/5 transition-all">
                         {link.label}
                       </a>
                     ))}

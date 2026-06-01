@@ -129,39 +129,29 @@ const Footer = () => (
           </h3>
           <div className="mt-4 h-1 w-8 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
           
-          <div className="mt-6 space-y-6">
-            <div className="flex gap-3.5">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-orange-500/10 bg-orange-500/5 text-orange-400">
-                <Phone size={15} strokeWidth={2} />
-              </span>
+          <div className="mt-6 space-y-5 text-[13px] text-slate-300">
+            <div className="flex items-start gap-2.5">
+              <Phone size={14} className="text-orange-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="type-button text-[12px] font-semibold text-white">Sales &amp; Support</p>
-                <a href="tel:18476076123" className="text-[13px] text-slate-300 hover:text-orange-400 transition-colors">
+                <p className="text-[11.5px] font-bold text-white uppercase tracking-wider">Phone</p>
+                <a href="tel:18476076123" className="hover:text-orange-400 transition-colors text-[12.5px] font-medium mt-0.5 block">
                   1-(847)-607-6123
                 </a>
               </div>
             </div>
 
-            <div className="flex gap-3.5">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-orange-500/10 bg-orange-500/5 text-orange-400">
-                <Mail size={15} strokeWidth={2} />
-              </span>
-              <div className="space-y-1 text-[13px] text-slate-300">
-                <p className="text-[12px] font-semibold text-white mb-1.5">Communications</p>
-                <p className="text-[11.5px] leading-none">
+            <div className="flex items-start gap-2.5">
+              <Mail size={14} className="text-orange-400 flex-shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="text-[11.5px] font-bold text-white uppercase tracking-wider mb-1">Email</p>
+                <p className="text-[12px] leading-tight">
                   <span className="text-orange-400/80 font-medium">Sales:</span>{" "}
                   <a href="mailto:sales@supportpro.com" className="hover:text-orange-400 transition-colors">
                     sales@supportpro.com
                   </a>
                 </p>
-                <p className="text-[11.5px] leading-none">
+                <p className="text-[12px] leading-tight">
                   <span className="text-orange-400/80 font-medium">Support:</span>{" "}
-                  <a href="mailto:support@supportpro.com" className="hover:text-orange-400 transition-colors">
-                    support@supportpro.com
-                  </a>
-                </p>
-                <p className="text-[11.5px] leading-none">
-                  <span className="text-orange-400/80 font-medium">MS Team:</span>{" "}
                   <a href="mailto:support@supportpro.com" className="hover:text-orange-400 transition-colors">
                     support@supportpro.com
                   </a>
@@ -169,16 +159,14 @@ const Footer = () => (
               </div>
             </div>
 
-            <div className="flex gap-3.5">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-orange-500/10 bg-orange-500/5 text-orange-400">
-                <MapPin size={15} strokeWidth={2} />
-              </span>
+            <div className="flex items-start gap-2.5 pt-2 border-t border-white/5">
+              <MapPin size={14} className="text-orange-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="type-button text-[12px] font-semibold text-white">Postal Address</p>
-                <p className="text-[12px] leading-relaxed text-slate-300 mt-1">
+                <p className="text-[11.5px] font-bold text-white uppercase tracking-wider">Address</p>
+                <p className="text-[12px] leading-relaxed text-slate-400 mt-0.5">
                   1020 Milwaukee Ave, #245,
                   <br />
-                  Deerfield, IL-60015, USA
+                  Deerfield, IL-60015
                 </p>
               </div>
             </div>

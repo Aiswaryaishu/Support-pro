@@ -95,6 +95,19 @@ const Hero = () => {
     <section
       className="relative overflow-hidden pt-[96px] lg:pt-[112px]"
     >
+      <style>{`
+        @keyframes lineExpand {
+          0%, 100% {
+            width: 40px;
+          }
+          50% {
+            width: 100px;
+          }
+        }
+        .animate-line-accent {
+          animation: lineExpand 4s ease-in-out infinite;
+        }
+      `}</style>
       {/* ── Premium warm background base ── */}
       <div
         className="absolute inset-0"
@@ -176,7 +189,12 @@ const Hero = () => {
             </p>
 
             {/* Orange underline accent */}
-            <div className="w-10 h-[5px] bg-orange-500 rounded-full mt-5 mb-7" />
+            <div 
+              className="h-[5px] rounded-full mt-5 mb-7 animate-line-accent" 
+              style={{
+                background: 'linear-gradient(90deg, #f97316, #fdbf24)',
+              }}
+            />
 
             {/* CTA row */}
             <div className="flex flex-wrap items-center justify-start gap-4">
