@@ -1,5 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const testimonials = [
   {
@@ -37,100 +44,44 @@ const getInitials = (name: string) =>
     .toUpperCase();
 
 const TestimonialsSection = () => {
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const isDraggingRef = useRef(false);
-  const isPausedRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const scrollStartRef = useRef(0);
-  const animationFrameRef = useRef<number | null>(null);
-  const resumeTimerRef = useRef<number | null>(null);
+  const swiperRef = useRef<any>(null);
 
-  const handleScroll = (direction: 'left' | 'right') => {
-    isPausedRef.current = true;
-
-    if (resumeTimerRef.current) {
-      window.clearTimeout(resumeTimerRef.current);
+  const handlePrev = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
     }
-
-    sliderRef.current?.scrollBy({
-      left: direction === 'left' ? -360 : 360,
-      behavior: 'smooth',
-    });
-
-    resumeTimerRef.current = window.setTimeout(() => {
-      isPausedRef.current = false;
-    }, 1400);
   };
 
-  useEffect(() => {
-    const autoSlide = () => {
-      const slider = sliderRef.current;
-
-      if (slider && !isPausedRef.current && !isDraggingRef.current) {
-        const halfwayPoint = slider.scrollWidth / 2;
-        slider.scrollLeft += 0.7;
-
-        if (slider.scrollLeft >= halfwayPoint) {
-          slider.scrollLeft = 0;
-        }
-      }
-
-      animationFrameRef.current = window.requestAnimationFrame(autoSlide);
-    };
-
-    animationFrameRef.current = window.requestAnimationFrame(autoSlide);
-
-    return () => {
-      if (animationFrameRef.current) {
-        window.cancelAnimationFrame(animationFrameRef.current);
-      }
-
-      if (resumeTimerRef.current) {
-        window.clearTimeout(resumeTimerRef.current);
-      }
-    };
-  }, []);
-
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    const slider = sliderRef.current;
-
-    if (!slider) {
-      return;
+  const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
     }
-
-    isDraggingRef.current = true;
-    isPausedRef.current = true;
-    dragStartXRef.current = event.clientX;
-    scrollStartRef.current = slider.scrollLeft;
-    slider.setPointerCapture(event.pointerId);
-  };
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const slider = sliderRef.current;
-
-    if (!slider || !isDraggingRef.current) {
-      return;
-    }
-
-    const dragDistance = event.clientX - dragStartXRef.current;
-    slider.scrollLeft = scrollStartRef.current - dragDistance;
-  };
-
-  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    const slider = sliderRef.current;
-
-    if (slider?.hasPointerCapture(event.pointerId)) {
-      slider.releasePointerCapture(event.pointerId);
-    }
-
-    isDraggingRef.current = false;
-    window.setTimeout(() => {
-      isPausedRef.current = false;
-    }, 1200);
   };
 
   return (
     <section className="relative overflow-hidden bg-white py-18 lg:py-24">
+      <style>{`
+        .swiper-pagination-container .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          border-radius: 9999px;
+          background-color: #FED7AA; /* bg-orange-200 */
+          opacity: 1;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          margin: 0 4px !important;
+          display: inline-block;
+        }
+        .swiper-pagination-container .swiper-pagination-bullet-active {
+          background-color: #F97316; /* bg-orange-500 */
+        }
+        /* Padding to prevent hovering scale/translation effects from clipping */
+        .testimonials-swiper {
+          padding: 12px 4px 20px 4px !important;
+          margin-top: -12px !important;
+        }
+      `}</style>
+
       <div
         className="absolute inset-0 opacity-[0.58]"
         style={{
@@ -187,7 +138,7 @@ const TestimonialsSection = () => {
             <div className="flex gap-3">
               <button
                 type="button"
-                onClick={() => handleScroll('left')}
+                onClick={handlePrev}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-orange-200 bg-white text-orange-500 shadow-sm transition hover:-translate-y-0.5 hover:border-orange-500 hover:bg-orange-500 hover:text-white"
                 aria-label="Scroll testimonials left"
               >
@@ -195,7 +146,7 @@ const TestimonialsSection = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleScroll('right')}
+                onClick={handleNext}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-orange-200 bg-white text-orange-500 shadow-sm transition hover:-translate-y-0.5 hover:border-orange-500 hover:bg-orange-500 hover:text-white"
                 aria-label="Scroll testimonials right"
               >
@@ -205,20 +156,46 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        <div className="relative mx-auto mt-12 max-w-[1240px]">
-          <div
-            ref={sliderRef}
-            className="cursor-grab overflow-x-auto scroll-smooth px-4 active:cursor-grabbing sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerCancel={handlePointerUp}
+        <div className="relative mx-auto mt-12 max-w-[1240px] px-4 sm:px-6">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            onBeforeInit={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            grabCursor={true}
+            loop={true}
+            speed={600}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            slidesPerView={1}
+            spaceBetween={20}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 28,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 28,
+              },
+            }}
+            pagination={{
+              el: '.swiper-pagination-container',
+              clickable: true,
+            }}
+            className="testimonials-swiper"
           >
-            <div className="flex w-max gap-5 sm:gap-7">
-              {[...testimonials, ...testimonials].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={`${testimonial.name}-${index}`}>
                 <article
-                  key={`${testimonial.name}-${index}`}
-                  className="group relative flex min-h-[330px] w-[300px] flex-shrink-0 flex-col justify-between overflow-hidden rounded-[30px] border border-orange-100 bg-white px-7 py-8 transition duration-300 hover:-translate-y-1 hover:border-orange-300 sm:w-[360px]"
+                  className="group relative flex min-h-[330px] w-full flex-col justify-between overflow-hidden rounded-[30px] border border-orange-100 bg-white px-7 py-8 transition duration-300 hover:-translate-y-1 hover:border-orange-300"
                 >
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 opacity-80" aria-hidden="true" />
                   <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-orange-50 transition duration-300 group-hover:scale-125" aria-hidden="true" />
@@ -248,18 +225,13 @@ const TestimonialsSection = () => {
                     </div>
                   </div>
                 </article>
-              ))}
-            </div>
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        <div className="mt-12 flex justify-center gap-2" aria-hidden="true">
-          <span className="h-2 w-2 rounded-full bg-orange-500" />
-          <span className="h-2 w-2 rounded-full bg-orange-200" />
-          <span className="h-2 w-2 rounded-full bg-orange-200" />
-          <span className="h-2 w-2 rounded-full bg-orange-200" />
-          <span className="h-2 w-2 rounded-full bg-orange-200" />
-        </div>
+        {/* Custom connected pagination dots container */}
+        <div className="swiper-pagination-container mt-12 flex justify-center gap-2" />
       </div>
     </section>
   );
