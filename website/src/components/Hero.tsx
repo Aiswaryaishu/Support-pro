@@ -93,8 +93,7 @@ const Badge247 = ({ className = '', animDelay = '0s' }: { className?: string; an
 const Hero = () => {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ paddingTop: '84px' }}
+      className="relative overflow-hidden pt-[96px] lg:pt-[112px]"
     >
       {/* ── Premium warm background base ── */}
       <div

@@ -81,6 +81,20 @@
     transform-origin: center;
   }
 
+  .contact-map {
+    animation: contact-map-drift 12s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .contact-map-routes path {
+    animation: contact-route-flow 8s linear infinite;
+    stroke-dasharray: 8 12;
+  }
+
+  .contact-map-nodes {
+    animation: contact-node-pulse 3.6s ease-in-out infinite;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand-600 text-white font-semibold text-sm transition-all duration-300 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/30 hover:-translate-y-0.5 active:translate-y-0;
   }
@@ -116,6 +130,33 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes contact-map-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10px, 5px, 0) scale(1.015);
+  }
+}
+
+@keyframes contact-route-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes contact-node-pulse {
+  0%, 100% {
+    opacity: 0.58;
+  }
+  50% {
+    opacity: 0.95;
   }
 }
 

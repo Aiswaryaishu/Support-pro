@@ -1,7 +1,7 @@
 import { Mail, MapPin, MessageSquareText, Phone, Send, User } from 'lucide-react';
 
 const ContactSection = () => (
-  <section className="relative overflow-hidden bg-white py-18 lg:py-24">
+  <section className="relative overflow-hidden bg-white pt-20 pb-28 lg:py-24">
     <div
       className="absolute inset-0"
       style={{
@@ -11,7 +11,7 @@ const ContactSection = () => (
       aria-hidden="true"
     />
     <svg
-      className="absolute inset-y-0 left-[26%] hidden h-full w-[92%] -translate-x-1/2 lg:block"
+      className="contact-map absolute inset-y-0 left-[-4%] hidden h-full w-[92%] -translate-x-1/2 lg:block"
       viewBox="0 0 960 540"
       fill="none"
       preserveAspectRatio="xMidYMid meet"
@@ -60,7 +60,7 @@ const ContactSection = () => (
         />
       </g>
 
-      <g stroke="rgba(249,115,22,0.22)" strokeWidth="1.2" strokeLinecap="round" opacity="0.48">
+      <g className="contact-map-routes" stroke="rgba(249,115,22,0.22)" strokeWidth="1.2" strokeLinecap="round" opacity="0.48">
         <path d="M176 188C280 112 410 100 494 170" />
         <path d="M494 170C590 92 718 102 804 210" />
         <path d="M494 170C438 230 392 296 304 342" />
@@ -86,7 +86,7 @@ const ContactSection = () => (
         [612, 250],
         [416, 236],
       ].map(([cx, cy]) => (
-        <g key={`${cx}-${cy}`}>
+        <g key={`${cx}-${cy}`} className="contact-map-nodes">
           <circle cx={cx} cy={cy} r="8" fill="white" stroke="rgba(249,115,22,0.28)" strokeWidth="1.4" />
           <circle cx={cx} cy={cy} r="3" fill="#f97316" opacity="0.38" />
         </g>
@@ -207,17 +207,14 @@ const ContactSection = () => (
           />
         </label>
 
-        <div className="relative mt-7 flex flex-col-reverse gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative mt-7 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <button
             type="submit"
-            className="type-button inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-8 text-[13px] text-white shadow-[0_16px_38px_rgba(249,115,22,0.28)] transition hover:-translate-y-0.5 hover:from-orange-600 hover:to-orange-500 hover:shadow-[0_20px_48px_rgba(249,115,22,0.35)] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 sm:w-[210px]"
+            className="type-button inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-7 text-sm text-white shadow-lg shadow-orange-500/25 transition hover:-translate-y-0.5 hover:shadow-orange-500/35 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/18">
-              <Send size={15} />
-            </span>
             Get In Touch
           </button>
-          <label className="type-card-body flex items-center gap-3 text-[11px] text-gray-500 sm:justify-end">
+          <label className="type-card-body flex items-center justify-center sm:justify-end gap-3 text-[11px] text-gray-500">
             <input type="checkbox" className="h-4 w-4 flex-shrink-0 rounded border-gray-300 accent-orange-500" />
             I agree that my data is collected.
           </label>

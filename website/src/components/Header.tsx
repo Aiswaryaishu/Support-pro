@@ -103,25 +103,25 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-[#0F0F0F] transition-shadow duration-300 ${
-        scrolled ? 'shadow-2xl shadow-black/40' : 'border-b border-white/[0.07]'
+      className={`fixed top-0 left-0 right-0 z-50 bg-black transition-all duration-300 ${
+        scrolled ? 'shadow-2xl shadow-black/50 border-b border-white/[0.05]' : 'border-b border-white/[0.05]'
       }`}
     >
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 h-[76px] lg:h-[84px] lg:gap-6">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-[96px] lg:h-[112px]">
 
-          {/* ── Logo ─────────────────────────────── */}
-          <a href="/" aria-label="SupportPRO home" className="flex w-[130px] items-center justify-start sm:w-[150px] lg:w-[170px] lg:-translate-x-8">
+          {/* ── Logo (Cleaned of offset shifts) ─────────────────────────────── */}
+          <a href="/" aria-label="SupportPRO home" className="flex items-center justify-start flex-shrink-0 lg:-ml-3">
             <img
               src="/logo-header.png"
-              alt="SupportPRO Transparent Technical Support"
-              className="h-14 w-auto object-contain sm:h-16 lg:h-[70px]"
+              alt="SupportPRO Logo"
+              className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
               draggable={false}
             />
           </a>
 
-          {/* ── Desktop Nav ──────────────────────── */}
-          <nav ref={navRef} className="hidden lg:flex items-center justify-center gap-1 translate-y-1.5" aria-label="Main navigation">
+          {/* ── Desktop Navigation (Modern interactive pills) ──────────────────────── */}
+          <nav ref={navRef} className="hidden lg:flex items-center justify-center gap-1.5" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => (
               <div
                 key={item.label}
@@ -130,8 +130,8 @@ const Header = () => {
                 onMouseLeave={handleLeave}
               >
                 <button
-                  className={`type-nav flex items-center gap-1.5 px-3 py-2 rounded-lg min-h-[42px] transition-colors text-[12px] xl:text-[13px] whitespace-nowrap ${
-                    openDesktop === item.label ? 'text-orange-400' : 'text-white hover:text-orange-400'
+                  className={`type-nav flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all duration-300 text-[12px] xl:text-[13px] whitespace-nowrap font-medium ${
+                    openDesktop === item.label ? 'text-orange-400 bg-white/[0.04]' : 'text-gray-300 hover:text-orange-400 hover:bg-white/[0.02]'
                   }`}
                   aria-expanded={openDesktop === item.label}
                   aria-haspopup="true"
@@ -148,7 +148,7 @@ const Header = () => {
                 {/* Dropdown */}
                 {openDesktop === item.label && (
                   <div
-                    className="absolute top-full left-0 mt-1.5 w-56 bg-[#1A1A1A] rounded-xl shadow-2xl shadow-black/50 border border-white/10 py-2 z-50"
+                    className="absolute top-full left-0 mt-2 w-56 bg-[#121212]/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/10 py-2 z-50 animate-fade-in"
                     role="menu"
                     onMouseEnter={() => handleEnter(item.label)}
                     onMouseLeave={handleLeave}
@@ -169,15 +169,15 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* ── Right actions ────────────────────── */}
-          <div className="hidden lg:flex items-center justify-end gap-2.5">
+          {/* ── Right Actions (Balanced, modern action bar) ────────────────────── */}
+          <div className="hidden lg:flex items-center justify-end gap-3">
             {/* Emergency outlined pill */}
             <a
               href="/emergency-support"
-              className="type-button group relative flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/70 bg-orange-500/[0.06] text-orange-300 text-[12px] hover:bg-orange-500/15 hover:border-orange-300 hover:text-orange-200 transition-all duration-200 whitespace-nowrap min-h-[38px] shadow-sm shadow-orange-950/20"
+              className="type-button group relative flex items-center gap-2 h-[38px] px-4 rounded-full border border-orange-500/40 bg-orange-500/5 text-orange-400 text-[12px] hover:bg-orange-500/15 hover:border-orange-500 hover:text-orange-300 transition-all duration-300 whitespace-nowrap shadow-inner"
               aria-label="Emergency Support"
             >
-              <span className="w-5 h-5 rounded-full bg-orange-500/15 flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-orange-500/15 flex items-center justify-center flex-shrink-0">
                 <Siren size={12} strokeWidth={2.4} />
               </span>
               Emergency
@@ -186,16 +186,16 @@ const Header = () => {
               </span>
             </a>
 
-            {/* Icon buttons */}
+            {/* Premium circular utility icons */}
             {[
-              { icon: <MessageCircle size={18} strokeWidth={1.5} />, label: 'Open chat', href: undefined },
-              { icon: <Bell size={18} strokeWidth={1.5} />, label: 'Notifications', href: undefined },
-              { icon: <User size={18} strokeWidth={1.5} />, label: 'Login to account', href: '/login' },
+              { icon: <MessageCircle size={17} strokeWidth={1.8} />, label: 'Open chat', href: undefined },
+              { icon: <Bell size={17} strokeWidth={1.8} />, label: 'Notifications', href: undefined },
+              { icon: <User size={17} strokeWidth={1.8} />, label: 'Login to account', href: '/login' },
             ].map(({ icon, label, href }) =>
               href ? (
                 <div key={label} className="group relative">
                   <a href={href} aria-label={label}
-                    className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 hover:text-orange-300 hover:bg-orange-500/10 hover:border-orange-400/30 transition-all duration-200">
+                    className="w-[38px] h-[38px] flex items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-gray-400 hover:text-orange-400 hover:bg-orange-500/10 hover:border-orange-500/20 transition-all duration-300 shadow-sm">
                     {icon}
                   </a>
                   <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
@@ -205,7 +205,7 @@ const Header = () => {
               ) : (
                 <div key={label} className="group relative">
                   <button aria-label={label}
-                    className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 hover:text-orange-300 hover:bg-orange-500/10 hover:border-orange-400/30 transition-all duration-200">
+                    className="w-[38px] h-[38px] flex items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-gray-400 hover:text-orange-400 hover:bg-orange-500/10 hover:border-orange-500/20 transition-all duration-300 shadow-sm">
                     {icon}
                   </button>
                   <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
@@ -215,13 +215,13 @@ const Header = () => {
               )
             )}
 
-            {/* Quote CTA */}
+            {/* Quote gradient CTA */}
             <a
               href="/request-for-quote"
               aria-label="Request a quote"
-              className="type-button group relative flex items-center gap-2 h-10 px-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-[12px] transition-all duration-200 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/45 flex-shrink-0"
+              className="type-button group relative flex items-center gap-2 h-[38px] px-5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-[12.5px] font-semibold transition-all duration-300 shadow-md shadow-orange-500/15 hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 flex-shrink-0"
             >
-              <FileText size={15} className="text-white" strokeWidth={2.4} />
+              <FileText size={14} className="text-white" strokeWidth={2.4} />
               <span>Quote</span>
               <span className="type-card-body pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#181818] px-3 py-1.5 text-[11px] text-white opacity-0 shadow-xl shadow-black/30 transition-all duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
                 Request for Quote
@@ -243,7 +243,7 @@ const Header = () => {
 
       {/* ── Mobile Menu ───────────────────────────── */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[76px] bg-[#0F0F0F] z-40 overflow-y-auto border-t border-white/10">
+        <div className="lg:hidden fixed inset-0 top-[96px] bg-[#0F0F0F] z-40 overflow-y-auto border-t border-white/10">
           <div className="px-5 py-5">
             <div className="flex gap-2 mb-5">
               <a href="/emergency-support" onClick={() => setMobileOpen(false)}

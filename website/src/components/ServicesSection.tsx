@@ -80,7 +80,7 @@ const metrics = [
 
 const ServicesSection = () => (
   <section
-    className="relative overflow-hidden py-18 text-white lg:py-24"
+    className="relative overflow-hidden pt-28 pb-20 text-white lg:py-24"
     style={{
       background:
         'radial-gradient(circle at 82% 0%, rgba(255,255,255,0.05) 0%, transparent 30%), radial-gradient(circle at 16% 100%, rgba(255,255,255,0.04) 0%, transparent 34%), linear-gradient(135deg, #050505 0%, #080808 42%, #0D0D0D 76%, #020202 100%)',

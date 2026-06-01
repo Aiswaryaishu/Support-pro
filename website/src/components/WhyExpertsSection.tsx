@@ -68,7 +68,7 @@ const WhyExpertsSection = () => (
 
     <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]">
-        <div className="relative">
+        <div className="relative order-2 lg:order-1">
           <div className="overflow-hidden rounded-[28px] shadow-[0_24px_80px_rgba(15,23,42,0.16)]">
             <img
               src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=85"
@@ -106,7 +106,7 @@ const WhyExpertsSection = () => (
           </div>
         </div>
 
-        <div className="max-w-[620px] pt-6 sm:pt-12 lg:pt-0">
+        <div className="max-w-[620px] pt-6 sm:pt-12 lg:pt-0 order-1 lg:order-2">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white/85 px-4 py-2 shadow-sm backdrop-blur">
             <ShieldCheck size={15} className="text-orange-500" strokeWidth={2.4} />
             <span className="type-eyebrow text-[11px] text-orange-600">
