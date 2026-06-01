@@ -152,8 +152,9 @@ const WhyExpertsSection = () => (
           </a>
         </div>
       </div>
+    </div>
 
-      <div className="relative left-1/2 mt-20 w-screen -translate-x-1/2 overflow-hidden bg-[#f4f1eb] py-16 sm:py-20">
+    <div className="relative w-full mt-20 overflow-hidden bg-[#f4f1eb] py-16 sm:py-20">
         <div
           className="absolute inset-0 opacity-[0.42]"
           style={{
@@ -267,7 +268,6 @@ const WhyExpertsSection = () => (
               </div>
             </div>
           </div>
-        </div>
         </div>
         </div>
       </div>
